@@ -58,6 +58,10 @@ impl Render for App {
     let title_bar = components::TitleBar::new()
       .child(div().flex().flex_row().text_color(rgb(0xFFFFFF)).gap_2().child(img("brand/scope-round-200.png").w_6().h_6()).child("Scope"));
 
+    let side_bar = div().w_96().bg(cx.theme().accent);
+
+    let main_div = div().flex().flex_row().h_full().w_full().child(side_bar).child(content);
+
     div()
       .bg(cx.theme().background)
       .w_full()
@@ -65,18 +69,6 @@ impl Render for App {
       .flex()
       .flex_col()
       .child(title_bar)
-      .child(
-        div()
-        .flex()
-        .flex_row()
-        .h_full()
-        .w_full()
-        .child(
-          div()
-          .w_96()
-          .bg(cx.theme().accent)
-        )
-        .child(content)
-      )
+      .child(main_div)
   }
 }
